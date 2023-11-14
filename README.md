@@ -18,6 +18,21 @@ query when experimenting with CrateDB.
 https://s3.amazonaws.com/crate.sampledata/
 
 
+
+## Contributions
+
+Before adding files to this repository, please make sure to install [Git LFS]
+beforehand. On macOS, it works like this:
+```shell
+brew install git-lfs
+git lfs install
+```
+
+Also, please check the `.gitattributes` file, which lists all the file types assigned
+to be handled by Git LFS. If you are adding a file of another type, make sure it is
+listed there.
+
+
 ## Included files
 
 ### timeseries/anomaly/nab-machine-failure.csv
@@ -42,5 +57,7 @@ failure of the machine.
   2013-12-02 21:25:00,76.12416182
   ```
 
+
+[Git LFS]: https://git-lfs.com/
 [NAB Data Corpus]: https://github.com/numenta/NAB/tree/master/data
 [nab-machine-failure.csv]: https://github.com/crate/cratedb-datasets/blob/main/timeseries/anomaly/nab-machine-failure.csv
