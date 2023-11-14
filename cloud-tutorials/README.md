@@ -93,3 +93,60 @@ CREATE TABLE marketing_data (
 - **metrics**: Object containing clicks, impressions, and conversion rate.
 - **landing_page_url**: The URL for the landing page.
 - **url_parts**: A generated column to automatically parse components of the `landing_page_url`.
+
+## devices_readings.json.gz
+
+### Overview
+The `devices_readings.json.gz` dataset cointains information about various readings from devices.
+
+### Schema
+```sql
+CREATE TABLE devices_readings (
+   "ts" TIMESTAMP WITH TIME ZONE,
+   "device_id" TEXT,
+   "battery" OBJECT(DYNAMIC) AS (
+      "level" BIGINT,
+      "status" TEXT,
+      "temperature" DOUBLE PRECISION
+   ),
+   "cpu" OBJECT(DYNAMIC) AS (
+      "avg_1min" DOUBLE PRECISION,
+      "avg_5min" DOUBLE PRECISION,
+      "avg_15min" DOUBLE PRECISION
+   ),
+   "memory" OBJECT(DYNAMIC) AS (
+      "free" BIGINT,
+      "used" BIGINT
+   )
+);
+```
+
+### Attributes
+- **ts**: Timestamp when each reading was taken.
+- **device_id**: Identifier of the device.
+- **battery**: Object containing battery level, status and temperature.
+- **cpu**: Object containing average CPU loads over the last 1, 5 and 15 minutes.
+- **memory**: Object containing information about the device's free and used memory.
+
+## devices_info.json.gz
+
+### Overview
+The `devices_info.json.gz` dataset stores metadata information about various devices.
+
+### Schema
+```sql
+CREATE TABLE devices_info (
+    "device_id" TEXT,
+    "api_version" TEXT,
+    "manufacturer" TEXT,
+    "model" TEXT,
+    "os_name" TEXT
+);
+```
+
+### Attributes
+- **device_id**: Identifier of the device.
+- **api_version**: Version of the API that the device supports.
+- **manufacturer**: Name of the manufacturer of the device.
+- **model**: Model name of the device.
+- **os_name**: Name of the operating system running on the device.
