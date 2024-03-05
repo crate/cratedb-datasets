@@ -150,3 +150,48 @@ CREATE TABLE devices_info (
 - **manufacturer**: Name of the manufacturer of the device.
 - **model**: Model name of the device.
 - **os_name**: Name of the operating system running on the device.
+
+
+## SQL Files
+The `.sql` files can be used for loading the data files using SQL.
+
+The statements can not be used 1:1. Before running them on the database,
+they needed to be splitted, and the `{table}` template variables needs
+to be interpolated.
+
+In order to interpolate a table name, use one of the statements
+outlined below.
+
+### Linux and \*nix
+```
+cat load_devices_info.sql | sed -e 's!{table}!devices_info!'
+```
+```
+cat load_devices_readings.sql | sed -e 's!{table}!devices_readings!'
+```
+```
+cat load_marketing.sql | sed -e 's!{table}!marketing_data!'
+```
+```
+cat load_netflix.sql | sed -e 's!{table}!netflix_catalog!'
+```
+```
+cat load_weather.sql | sed -e 's!{table}!weather_data!'
+```
+
+### Windows
+```
+(Get-Content -path load_devices_info.sql -Raw) -replace '{table}','devices_info'
+```
+```
+(Get-Content -path load_devices_readings.sql -Raw) -replace '{table}','devices_readings'
+```
+```
+(Get-Content -path load_marketing.sql -Raw) -replace '{table}','marketing_data'
+```
+```
+(Get-Content -path load_netflix.sql -Raw) -replace '{table}','netflix_catalog'
+```
+```
+(Get-Content -path load_weather.sql -Raw) -replace '{table}','weather_data'
+```
