@@ -1,7 +1,7 @@
 -- CrateDB Example Datasets
 -- https://github.com/crate/cratedb-datasets
 
-CREATE TABLE {table} (
+CREATE TABLE IF NOT EXISTS {table} (
     "timestamp" TIMESTAMP,
     "location" VARCHAR,
     "temperature" DOUBLE,

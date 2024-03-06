@@ -1,7 +1,7 @@
 -- CrateDB Example Datasets
 -- https://github.com/crate/cratedb-datasets
 
-CREATE TABLE {table} (
+CREATE TABLE IF NOT EXISTS {table} (
     campaign_id TEXT PRIMARY KEY,
     source TEXT,
     metrics OBJECT(DYNAMIC) AS (
