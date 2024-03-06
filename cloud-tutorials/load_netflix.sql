@@ -1,7 +1,7 @@
 -- CrateDB Example Datasets
 -- https://github.com/crate/cratedb-datasets
 
-CREATE TABLE {table} (
+CREATE TABLE IF NOT EXISTS {table} (
    "show_id" TEXT PRIMARY KEY,
    "type" TEXT,
    "title" TEXT,
