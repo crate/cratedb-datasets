@@ -28,6 +28,9 @@ that you can easily query when experimenting with CrateDB.
 
 https://s3.amazonaws.com/crate.sampledata/
 
+## CrateDB Academy datasets
+
+Datasets used in courses at the [CrateDB Academy](https://learn.cratedb.com) can be found in the `academy` subdirectory.
 
 ## Contributions
 
