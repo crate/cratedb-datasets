@@ -36,7 +36,7 @@ This JSONL file contains details about each of the libraries in Chicago. Each li
     "location": {
         "address":"3401 W. Foster Ave.",
         "zipcode":"60625",
-        "communityarea":"13",
+        "communityarea":13,
         "position":"POINT (-87.71361314512697 41.97557881655979)"
     },
     "hours":["10-5","10-5","CLOSED","10-5","10-5","12-4","CLOSED"],
