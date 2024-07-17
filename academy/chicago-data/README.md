@@ -24,6 +24,30 @@ Each line in the file contains a JSON object with this structure:
 }
 ```
 
+## Libraries Data
+
+### chicago_libraries.json
+
+This JSONL file contains details about each of the libraries in Chicago. Each line in the file contains a JSON object with this structure:
+
+```json
+{
+    "name":"Albany Park",
+    "location": {
+        "address":"3401 W. Foster Ave.",
+        "zipcode":"60625",
+        "communityarea":"13",
+        "position":"POINT (-87.71361314512697 41.97557881655979)"
+    },
+    "hours":["10-5","10-5","CLOSED","10-5","10-5","12-4","CLOSED"],
+    "phone":"(773) 539-5450",
+    "website":"https://www.chipublib.org/locations/3/"
+}
+```
+
+* Values for `communityarea` map to values of `areanumber` in the community areas data file.  
+* The `hours` array is organized by day, with Monday being the first entry and Sunday the last.  These hours were randomly generated and do not reflect the true opening hours of the library.
+
 ## Weather Data
 
 ### beach_weather_station_data.csv
