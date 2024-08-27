@@ -61,3 +61,15 @@ TODO
 ```
 
 TODO information about mappings to the `wind_farms.json` file.
+
+Here's an example table schema for this data:
+
+```sql
+CREATE TABLE windfarm_output (
+   windfarmid TEXT,
+   ts TIMESTAMP WITHOUT TIME ZONE,
+   month TIMESTAMP WITH TIME ZONE GENERATED ALWAYS AS date_trunc('month', ts),
+   output DOUBLE PRECISION,
+   outputpercentage DOUBLE PRECISION
+) PARTITIONED BY (month);
+```
