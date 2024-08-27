@@ -34,7 +34,7 @@ Each line in the file contains a JSON object with this structure:
 * `boundaries` is a polygon or multi polygon describing the outer boundaries of the wind farm.
 * `capacity` is measured in MW.
 
-Here's an example table schema for this data:
+Here's an example table schema for this data, using full text indexing for the textual descriptions of each wind farm:
 
 ```sql
 CREATE TABLE windfarms (
@@ -57,9 +57,9 @@ CREATE TABLE windfarms (
 
 ## Wind Farm Performance Data
 
-### TODO_FILE_NAME.json.gz
+### wind_farm_output.json.gz
 
-This compressed JSONL file forms the second part of this dataset. It contains data relating to the power output of each wind farm on an hourly basis.  The data in this file covers the period TODO to TODO. 
+This compressed JSONL file forms the second part of this dataset. It contains data relating to the power output of each wind farm on an hourly basis.  The data in this file covers the period TODO to TODO and contains TODO records. 
 
 Each line of the file contains a JSON object with this structure:
 
