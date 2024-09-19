@@ -24,6 +24,10 @@ Each line in the file contains a JSON object with this structure:
 }
 ```
 
+### chicago_community_areas_with_vectors.json
+
+This file contains the same information as the above, but with an additional `description_vec` field in the `details` object.  This field contains a `FLOAT_VECTOR` representation of the text in the `description` field, with 2048 dimensions.  These were generated using OpenAI's [`text-embedding-3-large`](https://platform.openai.com/docs/guides/embeddings) model.  
+
 ## Libraries Data
 
 ### chicago_libraries.json
