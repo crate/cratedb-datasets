@@ -32,6 +32,10 @@ https://s3.amazonaws.com/crate.sampledata/
 
 Datasets used in courses at the [CrateDB Academy](https://learn.cratedb.com) can be found in the `academy` subdirectory.
 
+## Developer Relations datasets
+
+Datasets used in developer relations talks, workshops and other projects can be found in the `devrel` subdirectory.
+
 ## Contributions
 
 Before adding files to this repository, please make sure to install [Git LFS]
