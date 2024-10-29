@@ -59,7 +59,7 @@ CREATE TABLE windfarms (
 
 ### wind_farm_output.json.gz
 
-This compressed JSONL file forms the second part of this dataset. It contains data relating to the power output of each wind farm on an hourly basis.  The data in this file covers the period TODO to TODO and contains TODO records. 
+This compressed JSONL file forms the second part of this dataset. It contains data relating to the power output of each wind farm on an hourly basis.  The data in this file covers the period from 19th August 2024 to 28th October 2024 and contains 75,825 records. 
 
 Each line of the file contains a JSON object with this structure:
 
