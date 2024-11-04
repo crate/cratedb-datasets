@@ -2,6 +2,8 @@
 
 This dataset contains data about UK offshore windfarms from [The Crown Estate](https://www.thecrownestate.co.uk/en-gb/what-we-do/asset-map/), which manages these installations.  The textual descriptions of each wind farm project are from Wikipedia (see: [List of offshore wind farms in the United Kingdom](https://en.wikipedia.org/wiki/List_of_offshore_wind_farms_in_the_United_Kingdom)).
 
+Watch CrateDB Developer Advocate Simon Prickett as he explains the data model and walks you through some example queries in [this video](https://www.youtube.com/watch?v=xqiLGjaTlBk) of his talk "Modeling and Analyzing Renewable Energy Data".
+
 ## Wind Farm Data
 
 ### wind_farms.json
