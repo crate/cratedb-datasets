@@ -17,6 +17,7 @@ Each line in the file contains a JSON object with this structure:
     "id": "TRTNK", 
     "name": "Triton Knoll", 
     "description": "Triton Knoll Wind Farm is an 857 MW...",
+    "description_vec": [0.0620925, 0.002576036, -0.019847626, -0.022143696, ...],
     "location": "POINT (0.840000 53.480000)", 
     "territory": "England", 
     "boundaries": "POLYGON ((0.87630538600007 53.4262737870001, ...))", 
@@ -32,6 +33,7 @@ Each line in the file contains a JSON object with this structure:
 ```
 
 * `id` is a unique ID for each wind farm.  These IDs are used as values for `windfarmid` in the performance data file.
+* `description_vec` is a vector embedding representation of the text in the `description` field, created using OpenAI's `text-embedding-3-large` model.
 * `location` is a singular point identifying the location of the wind farm.
 * `boundaries` is a polygon or multi polygon describing the outer boundaries of the wind farm.
 * `capacity` is measured in MW.
@@ -43,6 +45,7 @@ CREATE TABLE windfarms (
     id TEXT PRIMARY KEY,
     name TEXT,
     description TEXT INDEX USING fulltext WITH (analyzer='english'),
+    description_vec FLOAT_VECTOR(2048),
     location GEO_POINT,
     territory TEXT,
     boundaries GEO_SHAPE INDEX USING geohash WITH (PRECISION='1m', DISTANCE_ERROR_PCT=0.025),
