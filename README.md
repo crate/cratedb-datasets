@@ -13,6 +13,31 @@ The datasets are used for learning and experimenting,
 and to support blog posts and tech talks about CrateDB.
 
 
+## Usage
+
+How to acquire and use datasets provided by this repository.
+
+### Acquisition
+
+The content of this repository is published to an HTTP folder
+on the web server. Please consume all resources from there,
+because it is discouraged to use GitHub as a CDN.
+
+https://cdn.crate.io/downloads/datasets/cratedb-datasets/
+
+### Python API
+
+You can acquire datasets fluently in Python code by using
+CrateDB Toolkit's [Dataset API].
+```python
+from cratedb_toolkit.datasets import load_dataset
+load_dataset("tutorial/weather-basic")
+```
+Some of the datasets already include a default SQL DDL schema definition file,
+so provisioning them as a CrateDB database table is easier than needing to
+discover and type the correct `CREATE TABLE ...` statement manually.
+
+
 ## What's inside
 
 ### Embedded datasets
@@ -55,4 +80,5 @@ type, make sure it is listed there.
 
 
 
+[Dataset API]: https://cratedb-toolkit.readthedocs.io/datasets.html
 [Git LFS]: https://git-lfs.com/

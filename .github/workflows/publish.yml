@@ -1,0 +1,50 @@
+---
+name: Publish content
+
+on:
+  pull_request: ~
+  push:
+    branches: [ main ]
+
+  # Allow job to be triggered manually.
+  workflow_dispatch:
+
+# Cancel in-progress jobs when pushing to the same branch.
+concurrency:
+  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+
+  publish-webserver:
+
+    runs-on: "ubuntu-latest"
+
+    name: Upload content to web server
+    steps:
+
+    - name: Acquire sources
+      uses: actions/checkout@v4
+
+    - name: Install Rclone
+      run: sudo apt-get install --yes --no-install-recommends --no-install-suggests rclone
+
+    - name: Configure Rclone
+      run: |
+        mkdir -p ~/.config/rclone
+        cat << EOF > ~/.config/rclone/rclone.conf
+
+        [datasets-webdav]
+        type = webdav
+        url = https://cdn.crate.io/downloads/datasets
+        vendor = other
+
+        EOF
+
+    - name: Upload content using WebDAV
+      env:
+        RCLONE_WEBDAV_USER: webdav
+        RCLONE_WEBDAV_PASS: ${{ secrets.RCLONE_WEBDAV_PASS }}
+      run: |
+        rclone sync $(pwd) datasets-webdav:/cratedb-datasets \
+          --copy-links --delete-excluded --exclude="/.git**"
