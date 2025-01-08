@@ -1,3 +1,6 @@
+# GHA workflow recipe to upload repository content using WebDAV when changed.
+# In this setup, the workflow will connect to a tailnet first.
+# https://github.com/tailscale/github-action
 ---
 name: Publish content
 
@@ -23,6 +26,16 @@ jobs:
     name: Upload content to web server
     steps:
 
+    - name: Connect using Tailscale
+      uses: tailscale/github-action@v3
+      with:
+        oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+        oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
+        tags: tag:ci
+
+    - name: Probe network connectivity
+      run: ping -c2 cdn-tailnet.vdc.cr8.net &
+
     - name: Acquire sources
       uses: actions/checkout@v4
 
@@ -36,7 +49,7 @@ jobs:
 
         [datasets-webdav]
         type = webdav
-        url = https://cdn.crate.io/downloads/datasets
+        url = http://cdn-tailnet.vdc.cr8.net/downloads/datasets
         vendor = other
 
         EOF
