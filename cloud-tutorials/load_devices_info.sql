@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS {table} (
 );
 
 COPY {table}
-FROM 'https://github.com/crate/cratedb-datasets/raw/main/cloud-tutorials/devices_info.json.gz'
+FROM 'https://cdn.crate.io/downloads/datasets/cratedb-datasets/cloud-tutorials/devices_info.json.gz'
 WITH (compression='gzip', empty_string_as_null=true)
 RETURN SUMMARY;
 
