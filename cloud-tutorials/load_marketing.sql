@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS {table} (
 );
 
 COPY {table}
-FROM 'https://github.com/crate/cratedb-datasets/raw/main/cloud-tutorials/data_marketing.json.gz'
+FROM 'https://cdn.crate.io/downloads/datasets/cratedb-datasets/cloud-tutorials/data_marketing.json.gz'
 WITH (format = 'json', compression='gzip');
 
 REFRESH TABLE {table};
