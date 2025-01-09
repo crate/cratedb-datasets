@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS {table} (
 );
 
 COPY {table}
-FROM 'https://github.com/crate/cratedb-datasets/raw/main/cloud-tutorials/data_weather.csv.gz'
+FROM 'https://cdn.crate.io/downloads/datasets/cratedb-datasets/cloud-tutorials/data_weather.csv.gz'
 WITH (format='csv', compression='gzip', empty_string_as_null=true);
 
 REFRESH TABLE {table};
