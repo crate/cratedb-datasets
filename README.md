@@ -23,7 +23,7 @@ The content of this repository is published to an HTTP folder
 on the web server. Please consume all resources from there,
 because it is discouraged to use GitHub as a CDN.
 
-https://cdn.crate.io/downloads/datasets/cratedb-datasets/
+[https://cdn.crate.io/downloads/datasets/cratedb-datasets/]
 
 ### Python API
 
@@ -82,3 +82,4 @@ type, make sure it is listed there.
 
 [Dataset API]: https://cratedb-toolkit.readthedocs.io/datasets.html
 [Git LFS]: https://git-lfs.com/
+[https://cdn.crate.io/downloads/datasets/cratedb-datasets/]: https://cdn.crate.io/downloads/datasets/cratedb-datasets/

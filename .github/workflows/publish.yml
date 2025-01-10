@@ -28,7 +28,18 @@ jobs:
     name: Upload content to web server
     steps:
 
-    - name: Connect using Tailscale
+    - name: Acquire sources
+      uses: actions/checkout@v4
+
+    - name: Set up uv
+      uses: astral-sh/setup-uv@v4
+
+    - name: Generate README
+      run: |
+        cat README.md | uv run --with markdown -m markdown > README.html
+        rm README.md
+
+    - name: Connect to tailnet
       uses: tailscale/github-action@v3
       with:
         oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
@@ -37,9 +48,6 @@ jobs:
 
     - name: Probe network connectivity
       run: ping -c2 cdn-tailnet.vdc.cr8.net &
-
-    - name: Acquire sources
-      uses: actions/checkout@v4
 
     - name: Install Rclone
       run: sudo apt-get install --yes --no-install-recommends --no-install-suggests rclone
@@ -56,7 +64,7 @@ jobs:
 
         EOF
 
-    - name: Upload content using WebDAV
+    - name: Publish using WebDAV
       env:
         RCLONE_WEBDAV_USER: webdav
         RCLONE_WEBDAV_PASS: ${{ secrets.RCLONE_WEBDAV_PASS }}
