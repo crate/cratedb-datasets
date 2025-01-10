@@ -5,9 +5,11 @@
 name: Publish content
 
 on:
-  pull_request: ~
   push:
     branches: [ main ]
+
+  # Only able for testing purposes.
+  # pull_request: ~
 
   # Allow job to be triggered manually.
   workflow_dispatch:
