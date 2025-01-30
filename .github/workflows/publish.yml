@@ -1,0 +1,73 @@
+# GHA workflow recipe to upload repository content using WebDAV when changed.
+# In this setup, the workflow will connect to a tailnet first.
+# https://github.com/tailscale/github-action
+---
+name: Publish content
+
+on:
+  push:
+    branches: [ main ]
+
+  # Only able for testing purposes.
+  # pull_request: ~
+
+  # Allow job to be triggered manually.
+  workflow_dispatch:
+
+# Cancel in-progress jobs when pushing to the same branch.
+concurrency:
+  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+
+  publish-webserver:
+
+    runs-on: "ubuntu-latest"
+
+    name: Upload content to web server
+    steps:
+
+    - name: Acquire sources
+      uses: actions/checkout@v4
+
+    - name: Set up uv
+      uses: astral-sh/setup-uv@v4
+
+    - name: Generate README
+      run: |
+        cat README.md | uv run --with markdown -m markdown > README.html
+        rm README.md
+
+    - name: Connect to tailnet
+      uses: tailscale/github-action@v3
+      with:
+        oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+        oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
+        tags: tag:ci
+
+    - name: Probe network connectivity
+      run: ping -c2 cdn-tailnet.vdc.cr8.net &
+
+    - name: Install Rclone
+      run: sudo apt-get install --yes --no-install-recommends --no-install-suggests rclone
+
+    - name: Configure Rclone
+      run: |
+        mkdir -p ~/.config/rclone
+        cat << EOF > ~/.config/rclone/rclone.conf
+
+        [datasets-webdav]
+        type = webdav
+        url = http://cdn-tailnet.vdc.cr8.net/downloads/datasets
+        vendor = other
+
+        EOF
+
+    - name: Publish using WebDAV
+      env:
+        RCLONE_WEBDAV_USER: webdav
+        RCLONE_WEBDAV_PASS: ${{ secrets.RCLONE_WEBDAV_PASS }}
+      run: |
+        rclone sync $(pwd) datasets-webdav:/cratedb-datasets \
+          --copy-links --delete-excluded --exclude="/.git**"
