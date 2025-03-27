@@ -1,5 +1,7 @@
 # cratedb-datasets
 
+**Please consume the datasets at [cratedb-datasets] using HTTP,
+or use CrateDB Toolkit's [Datasets API].**
 
 ## About
 
@@ -55,4 +57,6 @@ type, make sure it is listed there.
 
 
 
+[cratedb-datasets]: https://cdn.crate.io/downloads/datasets/cratedb-datasets/
+[Datasets API]: https://cratedb-toolkit.readthedocs.io/datasets.html
 [Git LFS]: https://git-lfs.com/
